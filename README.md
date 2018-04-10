@@ -1,2 +1,2 @@
 # facebookbot
-Collection of Facebook Bot Script
+Use this script on https://script.google.com/
