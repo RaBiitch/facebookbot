@@ -1,0 +1,19 @@
+var aing={
+  getApi:function(huh){var a=UrlFetchApp.fetch(huh,{muteHttpExceptions:true,method:"get",validateHttpsCertificates:false}),b=JSON.parse(a.getContentText());return b},
+  setApi:function(huh,pl){var a=UrlFetchApp.fetch(huh,{muteHttpExceptions:true,method:"post",payload:pl,validateHttpsCertificates:false}),b=JSON.parse(a.getContentText());return b}
+};
+ 
+function reaction(){
+  var token="input token here";
+  var tipe="HAHA"; //LIKE, LOVE, WOW, HAHA, SAD, ANGRY, THANKFUL < choose one reaction
+  var limit="20";
+  var ambil=aing.getApi("https://graph.beta.beta.beta.facebook.com/me/home?access_token="+token+"&fields=id&limit="+limit);
+  for(var i in ambil.data){
+    var react=aing.setApi("https://graph.beta.beta.facebook.co.id/"+ambil.data[i].id+"/reactions",{access_token:token,method:"post",type:tipe});
+    if(react.success){ // CTRL + ENTER for see log
+      Logger.log(ambil.data[i].id+":success");
+    }else{
+      Logger.log(ambil.data[i].id+":error");
+    }
+  }
+}
